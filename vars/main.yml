@@ -1,0 +1,14 @@
+---
+# vars file for ansible-role-prometheus
+prometheus_version: "2.3.2"
+
+prometheus_user: "prometheus"
+prometheus_group: "{{ prometheus_user }}"
+prometheus_service: "prometheus.service"
+
+prometheus_path: "/opt/prometheus"
+prometheus_package_base: "prometheus-{{ prometheus_version }}.linux-amd64"
+prometheus_package: "{{ prometheus_package_base }}.tar.gz"
+prometheus_package_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ prometheus_package }}"
+
+prometheus_db_path: "/var/lib/prometheus"

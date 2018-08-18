@@ -1,0 +1,6 @@
+---
+# handlers file for ansible-role-prometheus
+- name: "Prometheus restarted"
+  service:
+    name: "prometheus.service"
+    state: "restarted"

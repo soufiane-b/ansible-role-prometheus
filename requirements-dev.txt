@@ -1,0 +1,6 @@
+-r requirements.txt
+ansible>=2.6.3
+molecule
+docker
+ansible-lint
+testinfra

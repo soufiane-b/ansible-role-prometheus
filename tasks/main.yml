@@ -1,0 +1,50 @@
+---
+# tasks file for ansible-role-prometheus
+- name: "Prometheus group"
+  group:
+    name: "{{ prometheus_group }}"
+    system: true
+    state: "present"
+
+- name: "Prometheus user"
+  user:
+    name: "{{ prometheus_user }}"
+    system: true
+    shell: "/sbin/falselogin"
+    group: "{{ prometheus_group }}"
+    createhome: false
+
+- name: "Prometheus package"
+  get_url:
+    url: "{{ prometheus_package_url }}"
+    dest: "/opt"
+
+- name: "Prometheus package unpacked"
+  unarchive:
+    src: "/opt/{{ prometheus_package }}"
+    dest: "/opt"
+    creates: "/opt/{{ prometheus_package_base }}/prometheus"
+    remote_src: true
+
+- name: "Prometheus main link"
+  file:
+    state: "link"
+    dest: "{{ prometheus_path }}"
+    src: "/opt/{{ prometheus_package_base }}"
+
+- name: "Prometheus db path"
+  file:
+    state: "directory"
+    path: "{{ prometheus_db_path }}"
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
+
+- name: "Prometheus service file"
+  template:
+    src: "{{ prometheus_service }}.j2"
+    dest: "/etc/systemd/system/{{ prometheus_service }}"
+
+- name: "Prometheus service started"
+  systemd:
+    name: "{{ prometheus_service }}"
+    state: "started"
