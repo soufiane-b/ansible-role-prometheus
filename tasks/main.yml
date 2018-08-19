@@ -15,16 +15,25 @@
     createhome: false
 
 - name: "Prometheus package"
+  become: false
   get_url:
     url: "{{ prometheus_package_url }}"
-    dest: "/opt"
+    dest: "/tmp"
+  register: "_download_package"
+  until: "_download_package is succeeded"
+  retries: 5
+  delay: 2
+  delegate_to: "localhost"
+  run_once: true
+  changed_when: false
 
 - name: "Prometheus package unpacked"
   unarchive:
-    src: "/opt/{{ prometheus_package }}"
+    src: "/tmp/{{ prometheus_package }}"
     dest: "/opt"
     creates: "/opt/{{ prometheus_package_base }}/prometheus"
-    remote_src: true
+    owner: "{{ prometheus_user }}"
+    group: "{{ prometheus_group }}"
 
 - name: "Prometheus main link"
   file:
