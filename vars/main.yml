@@ -4,7 +4,7 @@ prometheus_version: "2.3.2"
 
 prometheus_user: "prometheus"
 prometheus_group: "{{ prometheus_user }}"
-prometheus_service: "prometheus.service"
+prometheus_service: "prometheus"
 
 prometheus_path: "/opt/prometheus"
 prometheus_package_base: "prometheus-{{ prometheus_version }}.linux-amd64"
