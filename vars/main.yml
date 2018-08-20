@@ -6,9 +6,13 @@ prometheus_user: "prometheus"
 prometheus_group: "{{ prometheus_user }}"
 prometheus_service: "prometheus"
 
-prometheus_path: "/opt/prometheus"
+prometheus_dir: "/opt/prometheus"
 prometheus_package_base: "prometheus-{{ prometheus_version }}.linux-amd64"
 prometheus_package: "{{ prometheus_package_base }}.tar.gz"
 prometheus_package_url: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/{{ prometheus_package }}"
 
-prometheus_db_path: "/var/lib/prometheus"
+prometheus_db_dir: "/var/lib/prometheus"
+
+prometheus_conf_dir: "/etc/prometheus"
+prometheus_conf_file: "{{ prometheus_conf_dir }}/prometheus.yml"
+prometheus_conf_rules_dir: "{{ prometheus_conf_dir }}/rules"

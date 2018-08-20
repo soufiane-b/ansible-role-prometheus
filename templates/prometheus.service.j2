@@ -8,10 +8,11 @@ Type=simple
 Environment="GOMAXPROCS={{ ansible_processor_vcpus|default(ansible_processor_count) }}"
 User={{ prometheus_user }}
 Group={{ prometheus_group }}
-WorkingDirectory={{ prometheus_path }}
+WorkingDirectory={{ prometheus_dir }}
 ExecReload=/bin/kill -HUP $MAINPID
-ExecStart={{ prometheus_path }}/prometheus \
-  --storage.tsdb.path={{ prometheus_db_path }} \
+ExecStart={{ prometheus_dir }}/prometheus \
+  --config.file={{ prometheus_conf_file }} \
+  --storage.tsdb.path={{ prometheus_db_dir }} \
   --storage.tsdb.retention={{ prometheus_storage_retention }}
 
 SyslogIdentifier=prometheus

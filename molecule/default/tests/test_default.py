@@ -22,13 +22,12 @@ def test_user(host):
 
 def test_config(host):
     """Test config."""
-    config = host.file("/opt/prometheus/prometheus.yml")
+    config = host.file("/etc/prometheus/prometheus.yml")
     assert config.exists
     assert config.is_file
-    assert config.user == "prometheus"
+    assert config.user == "root"
     assert config.group == "prometheus"
-    assert config.mode == 0o644
-    # assert config.contains()
+    assert config.mode == 0o640
 
 
 def test_service(host):

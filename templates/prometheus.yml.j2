@@ -1,0 +1,14 @@
+# {{ ansible_managed }}
+global:
+  scrape_interval: {{ prometheus_scrape_interval }}
+  scrape_timeout: {{ prometheus_scrape_timeout }}
+  evaluation_interval: {{ prometheus_evaluation_interval }}
+
+rule_files:
+  - {{ prometheus_conf_rules_dir }}/*.rules
+
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090']
