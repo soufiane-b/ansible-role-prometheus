@@ -16,3 +16,6 @@ prometheus_db_dir: "/var/lib/prometheus"
 prometheus_conf_dir: "/etc/prometheus"
 prometheus_conf_file: "{{ prometheus_conf_dir }}/prometheus.yml"
 prometheus_conf_rules_dir: "{{ prometheus_conf_dir }}/rules"
+
+prometheus_syslog_id: "prometheus"
+prometheus_log_dir: "/var/log/prometheus"

@@ -43,6 +43,13 @@ def test_socket(host):
     assert socket.is_listening
 
 
+def test_log(host):
+    """Test log."""
+    config = host.file("/var/lib/prometheus/prometheus.log")
+    assert config.exists
+    assert config.is_file
+
+
 def test_version(host):
     """Test version."""
     version = os.getenv('PROMETHEUS', "2.3.2")

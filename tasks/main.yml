@@ -59,6 +59,20 @@
     owner: "root"
     group: "{{ prometheus_group }}"
     mode: "0640"
+  notify: "Prometheus reloaded"
+
+- name: "Prometheus log dir"
+  file:
+    state: "directory"
+    path: "{{ prometheus_log_dir }}"
+    owner: "root"
+    group: "{{ prometheus_group }}"
+    mode: "0750"
+
+- name: "Prometheus syslog config"
+  template:
+    src: "prometheus.conf.rsyslog.j2"
+    dest: "/etc/rsyslog.d/90-prometheus.conf"
 
 - name: "Prometheus db path"
   file:

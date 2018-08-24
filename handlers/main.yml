@@ -4,3 +4,13 @@
   service:
     name: "prometheus.service"
     state: "restarted"
+
+- name: "Prometheus reloaded"
+  service:
+    name: "prometheus.service"
+    state: "reloaded"
+
+- name: "Rsyslog restarted"
+  service:
+    name: "rsyslog.service"
+    state: "restarted"

@@ -15,7 +15,7 @@ ExecStart={{ prometheus_dir }}/prometheus \
   --storage.tsdb.path={{ prometheus_db_dir }} \
   --storage.tsdb.retention={{ prometheus_storage_retention }}
 
-SyslogIdentifier=prometheus
+SyslogIdentifier={{ prometheus_syslog_id }}
 Restart=always
 
 [Install]
