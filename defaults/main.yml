@@ -3,6 +3,7 @@
 prometheus_scrape_interval: "1m"
 prometheus_scrape_timeout: "10s"
 prometheus_evaluation_interval: "1m"
+prometheus_scrape_interval: "60s"
 
 prometheus_storage_retention: "30d"
 
